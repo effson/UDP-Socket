@@ -41,7 +41,7 @@ int main()
   //以便进行网络通信。
 
 	// bind要求的是struct sockaddr类型的地址， 这里将地址强转为void*,
-	// 或者强转为struct sockaddr *， 后续操作此地址会有问题吗？
+	// 或者强转为struct sockaddr *
 	// 比如struct sockaddr_in 和 struct sockaddr长度是否一致，这样强行转后使用变量时是否会出错？
 	if(bind(sd, (void *)&laddr, sizeof(laddr)) < 0)
 	{
@@ -51,8 +51,8 @@ int main()
 
 	/*!!!*/
 	// 这里raddr_len一定要初始化
-	// 如果不初始化，第一次打印的地址会出错，之后才会正常， 为社么呢
-	// 因为第一次是按照raddr_len大小长度来取的地址，如果长度为0，则获取不到？
+	// 如果不初始化，第一次打印的地址会出错，之后才会正常
+	// 第一次是按照raddr_len大小长度来取的地址，如果长度为0，则获取不到？
 	// 而之后raddr_len值被改变
 
 	raddr_len = sizeof(raddr);
